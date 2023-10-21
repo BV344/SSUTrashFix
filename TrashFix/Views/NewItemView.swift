@@ -12,6 +12,21 @@ struct NewItemView: View {
     @Binding var newItemPresented: Bool
     var body: some View {
         VStack {
+            // Cancel Button
+            
+            HStack {
+                
+                    Button(action: {
+                        newItemPresented = false
+                    }, label: {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.red)
+                            .font(.title)
+                    })
+                    Spacer()
+                }
+                .padding()
+            
             Text("New Item")
                 .font(.system(size: 32))
                 .bold()
