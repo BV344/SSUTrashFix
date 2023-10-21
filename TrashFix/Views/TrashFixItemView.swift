@@ -28,8 +28,8 @@ struct TrashFixItemView: View {
                 viewModel.toggleIsDone(item: item)
            
             } label: {
-                Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
-                    .foregroundColor(Color.blue)
+                Image(systemName: item.isDone ? "circle.fill" : "circle")
+                    .foregroundColor(Color.red)
             }
         }
     }
@@ -40,6 +40,6 @@ struct TrashFixItemView_Previews: PreviewProvider {
         TrashFixItemView(item: .init(id: "123",
              title: "Get Milk",
              trashFixID: "12345",
-             isDone: true))
+             isDone: false))
     }
 }
