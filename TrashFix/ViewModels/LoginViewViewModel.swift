@@ -22,8 +22,21 @@ class LoginViewViewModel: ObservableObject{
             return
         }
         //Try log in
-        Auth.auth().signIn(withEmail: email, password: password)
-        
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if let error = error as NSError? {
+                let errorCode = error.code
+                switch errorCode {
+                case AuthErrorCode.invalidEmail.rawValue:
+                    self.errorMessage = "Please enter a valid email."
+                case AuthErrorCode.wrongPassword.rawValue:
+                    self.errorMessage = "The password is incorrect."
+                case AuthErrorCode.userNotFound.rawValue:
+                    self.errorMessage = "This account does not exist."
+                default:
+                    self.errorMessage = "Login failed."
+                }
+            }
+        }
     }
     
     private func validate() -> Bool{
