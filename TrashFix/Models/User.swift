@@ -5,6 +5,8 @@
 //  Created by Brayan Vizcaino on 10/20/23.
 //
 
+// HIYA
+
 import Foundation
 
 struct User: Codable {

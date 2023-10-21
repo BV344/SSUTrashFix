@@ -5,6 +5,8 @@
 //  Created by Brayan Vizcaino on 10/20/23.
 //
 
+//  WEEE
+
 import Foundation
 
 struct TrashFixItem: Codable, Identifiable {
