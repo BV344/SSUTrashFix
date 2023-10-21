@@ -10,12 +10,13 @@ import SwiftUI
 struct NewItemView: View {
     @StateObject var viewModel = NewItemViewViewModel()
     @Binding var newItemPresented: Bool
+    
+    
     var body: some View {
         VStack {
-            // Cancel Button
             
+            // Cancel Button
             HStack {
-                
                     Button(action: {
                         newItemPresented = false
                     }, label: {
@@ -27,19 +28,22 @@ struct NewItemView: View {
                 }
                 .padding()
             
-            Text("New Item")
+            Text("New TrashFix Device")
                 .font(.system(size: 32))
                 .bold()
-                .padding(.top, 50)
+                .padding()
             
             Form {
                 //Title
                 TextField("Title", text: $viewModel.title)
                     .textFieldStyle(DefaultTextFieldStyle())
                 
-                //Due Date
-                DatePicker("Due Date", selection: $viewModel.dueDate)
-                    .datePickerStyle(GraphicalDatePickerStyle())//This gives us the Calender
+                //
+                //Text Field Id
+                TextField("TrashFix Device ID", text: $viewModel.trashFixID)
+                    .textFieldStyle(DefaultTextFieldStyle())
+                //
+                
                 //Button
                 TFButton(title: "Save",
                          background: .pink) {
@@ -56,7 +60,6 @@ struct NewItemView: View {
             .alert(isPresented: $viewModel.showAlert) {
                 Alert(title: Text("Error"),
                       message: Text("Please fill in all fields and select due date that is today or newer."))
-                
             }
         }
         

@@ -11,7 +11,7 @@ import Foundation
 
 class NewItemViewViewModel: ObservableObject {
     @Published var title = ""
-    @Published var dueDate = Date()
+    @Published var trashFixID = ""
     @Published var showAlert = false
     
     init () {}
@@ -31,8 +31,7 @@ class NewItemViewViewModel: ObservableObject {
         let newItem = TrashFixItem(
             id: newId,
             title: title,
-            dueDate: dueDate.timeIntervalSince1970,
-            createdDate: Date().timeIntervalSince1970,
+            trashFixID: trashFixID,
             isDone: false
         )
         
@@ -51,9 +50,7 @@ class NewItemViewViewModel: ObservableObject {
         guard !title.trimmingCharacters(in: .whitespaces).isEmpty else {
             return false
         }
-        guard dueDate >= Date().addingTimeInterval(-86400) else {
-            return false
-        }
+    
         return true
     }
 }

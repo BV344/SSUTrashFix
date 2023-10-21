@@ -17,9 +17,10 @@ struct TrashFixItemView: View {
             VStack(alignment: .leading) {
                 Text(item.title)
                     .font(.body)
-                Text("\(Date(timeIntervalSince1970: item.dueDate).formatted(date: .abbreviated, time: .shortened))")
+                Text(item.trashFixID)
                     .font(.footnote)
                     .foregroundColor(Color(.secondaryLabel))
+                    
             }
             Spacer()
             
@@ -38,8 +39,7 @@ struct TrashFixItemView_Previews: PreviewProvider {
     static var previews: some View {
         TrashFixItemView(item: .init(id: "123",
              title: "Get Milk",
-             dueDate: Date().timeIntervalSince1970,
-             createdDate: Date().timeIntervalSince1970,
-            isDone: true))
+             trashFixID: "12345",
+             isDone: true))
     }
 }
