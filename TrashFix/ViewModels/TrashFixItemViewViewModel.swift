@@ -9,9 +9,28 @@
 import FirebaseAuth
 import FirebaseFirestore
 import Foundation
+import FirebaseDatabase
 
 class TrashFixItemViewViewModel: ObservableObject {
-    init () {}
+    @Published var isTrashCanFull = false
+
+        init() {
+            observeStatus()
+        }
+
+        func observeStatus() {
+            let ref = Database.database(url: "https://trashfix-e3b6f-default-rtdb.firebaseio.com/").reference().child("Status")
+
+            ref.observe(DataEventType.value) { snapshot in
+                if let value = snapshot.value as? String {
+                    if value == "Full" {
+                        self.isTrashCanFull = true
+                    } else {
+                        self.isTrashCanFull = false
+                    }
+                }
+            }
+        }
     
     func toggleIsDone(item: TrashFixItem) {
         var itemCopy = item
