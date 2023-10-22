@@ -12,22 +12,32 @@ import Foundation
 import FirebaseDatabase
 
 class TrashFixItemViewViewModel: ObservableObject {
-    @Published var isTrashCanFull = false
+    init() {}
 
-        init() {
-            observeStatus()
-        }
-
-        func observeStatus() {
-            let ref = Database.database(url: "https://trashfix-e3b6f-default-rtdb.firebaseio.com/").reference().child("Status")
+    func observeStatus(item: TrashFixItem) {
+            let ref = Database.database().reference().child("Status")
 
             ref.observe(DataEventType.value) { snapshot in
                 if let value = snapshot.value as? String {
-                    if value == "Full" {
-                        self.isTrashCanFull = true
-                    } else {
-                        self.isTrashCanFull = false
+                    
+                    var itemCopy = item
+                    
+                    guard let uid = Auth.auth().currentUser?.uid else {
+                        return
                     }
+                    
+                    if value == "Full" {
+                        itemCopy.setDone(true)
+                    } else {
+                        itemCopy.setDone(false)
+                    }
+                    
+                    let db = Firestore.firestore()
+                    db.collection("users")
+                        .document(uid)
+                        .collection("todos")
+                        .document(itemCopy.id)
+                        .setData(itemCopy.asDictionary(), merge: true)
                 }
             }
         }

@@ -32,6 +32,9 @@ struct TrashFixItemView: View {
                     .foregroundColor(Color.red)
             }
         }
+        .onAppear {
+            viewModel.observeStatus(item: item)
+        }
     }
 }
 
