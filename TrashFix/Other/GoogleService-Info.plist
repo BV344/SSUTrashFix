@@ -26,5 +26,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:37435806739:ios:3b53e8192f785245f4dbe6</string>
+	<key>DATABASE_URL</key>
+	<string>https://trashfix-e3b6f-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

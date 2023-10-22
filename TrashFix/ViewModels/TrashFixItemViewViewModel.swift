@@ -29,4 +29,3 @@ class TrashFixItemViewViewModel: ObservableObject {
             .setData(itemCopy.asDictionary(), merge: true)
     }
 }
-

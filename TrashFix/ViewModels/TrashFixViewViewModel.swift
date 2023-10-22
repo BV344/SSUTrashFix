@@ -22,7 +22,6 @@ class TrashFixViewViewModel: ObservableObject {
     // - Parameter id: Item is to Delete
     func delete(id: String) {
         let db = Firestore.firestore()
-        
         db.collection("users")
             .document(userId)
             .collection("todos")
