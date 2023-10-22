@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var viewModel = MainViewViewModel()
+    @State var trashFixItems: [TrashFixItem] = []
     
     var body: some View {
         if viewModel.isSignedIn, !viewModel.currentUserId.isEmpty {
@@ -25,7 +26,13 @@ struct MainView: View {
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
-            LogView()
+            LogView(trashFixItems: trashFixItems)
+                .onAppear {
+                    let logViewModel = LogViewModel()
+                    logViewModel.fetchTrashFixItems { items in
+                        trashFixItems = items
+                    }
+                }
                 .tabItem {
                     Label("Log", systemImage: "doc.plaintext")
                 }
@@ -34,6 +41,7 @@ struct MainView: View {
                     Label("Profile", systemImage: "person.circle")
                 }
         }
+        
     }
 }
 
