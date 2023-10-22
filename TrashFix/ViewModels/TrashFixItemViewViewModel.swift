@@ -26,7 +26,7 @@ class TrashFixItemViewViewModel: ObservableObject {
             .document(uid)
             .collection("todos")
             .document(itemCopy.id)
-            .setData(itemCopy.asDictionary())
+            .setData(itemCopy.asDictionary(), merge: true)
     }
 }
 
