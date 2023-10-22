@@ -25,6 +25,10 @@ struct MainView: View {
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
+            LogView()
+                .tabItem {
+                    Label("Log", systemImage: "doc.plaintext")
+                }
             ProfileView()
                 .tabItem() {
                     Label("Profile", systemImage: "person.circle")
