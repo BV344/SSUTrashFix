@@ -45,7 +45,7 @@ void setup ()
 void loop ()
 {
   if(!digitalRead(trigger)){
-    Firebase.setString("Status","Trash can is full");
+    Firebase.setString("Status","Full");
     while(digitalRead(reset)){
       yield();
     }
@@ -56,7 +56,7 @@ void loop ()
     }
   }
   else{
-    Firebase.setString("Status","Trash can is good");
+    Firebase.setString("Status","Good");
     while(digitalRead(trigger)){
       yield();
     }
